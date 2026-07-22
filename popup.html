@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Fine-Print Redline</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <h1>Fine-Print Redline</h1>
+
+  <section id="settings">
+    <label>
+      Provider
+      <select id="provider">
+        <option value="groq">Groq (free tier, hosted)</option>
+        <option value="ollama">Ollama (local, offline)</option>
+      </select>
+    </label>
+    <label id="apiKeyRow">
+      Groq API key
+      <input type="password" id="apiKey" placeholder="gsk_..." />
+    </label>
+    <button id="saveSettings">Save</button>
+    <span id="settingsStatus"></span>
+  </section>
+
+  <hr />
+
+  <section id="links">
+    <div id="currentPageNote"></div>
+    <button id="scanBtn">Scan this page for ToS / Privacy links</button>
+    <ul id="linkList"></ul>
+    <label>
+      Or paste a policy URL directly
+      <input type="text" id="manualUrl" placeholder="https://example.com/privacy" />
+    </label>
+    <button id="manualExtractBtn">Extract from this URL</button>
+  </section>
+
+  <hr />
+
+  <section id="result" hidden>
+    <h2>Extraction result</h2>
+    <div id="extractStats"></div>
+    <details>
+      <summary>Preview extracted text</summary>
+      <pre id="extractPreview"></pre>
+    </details>
+
+    <button id="testLlmBtn">Test one LLM call on first chunk</button>
+    <pre id="llmOutput"></pre>
+  </section>
+
+  <div id="log"></div>
+
+  <script src="extract.js"></script>
+  <script src="llm.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
