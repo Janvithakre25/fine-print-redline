@@ -44,7 +44,7 @@ async function fetchAndExtract(url) {
   };
 }
 
-function chunkText(text, chunkSize = 3000, overlap = 300) {
+function chunkText(text, chunkSize = 5000, overlap = 300) {
   const paragraphs = text.split(/\n{2,}/);
   const chunks = [];
   let current = "";

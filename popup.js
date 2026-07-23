@@ -130,4 +130,63 @@ function buildTestPrompt(chunk) {
   ].join("\n");
 }
 
+// ---------- Classify ALL chunks (the real analysis) ----------
+
+const classifyProgress = document.getElementById("classifyProgress");
+const classifyResults = document.getElementById("classifyResults");
+
+document.getElementById("classifyAllBtn").addEventListener("click", async () => {
+  clearLog();
+  if (!lastChunks.length) {
+    log("Run an extraction first.");
+    return;
+  }
+
+  classifyResults.innerHTML = "";
+  classifyProgress.textContent = "Starting...";
+
+  const { provider, apiKey } = await chrome.storage.local.get(["provider", "apiKey"]);
+
+  try {
+    const findings = await classifyAllChunks(
+      lastChunks,
+      { provider: provider || "groq", apiKey },
+      (done, total) => {
+        classifyProgress.textContent = `Processing chunk ${done} of ${total}...`;
+      }
+    );
+    classifyProgress.textContent = `Done. ${findings.length} finding(s) across ${lastChunks.length} chunks.`;
+    renderFindings(findings);
+    window.lastFindings = findings; // stash for easy access/inspection later
+  } catch (err) {
+    classifyProgress.textContent = "";
+    log(err);
+  }
+});
+
+function renderFindings(findings) {
+  classifyResults.innerHTML = "";
+  for (const f of findings) {
+    const div = document.createElement("div");
+    div.style.border = "1px solid #ddd";
+    div.style.padding = "6px";
+    div.style.marginBottom = "6px";
+    div.style.fontSize = "11px";
+
+    if (f.error) {
+      div.style.background = "#ffe8e8";
+      div.textContent = f.error;
+    } else {
+      div.innerHTML = `
+        <strong>${escapeHtml(f.category || "unknown")}</strong>
+        — <span style="color:${f.risk_label === "risky" ? "#b00" : "#666"}">${escapeHtml(f.risk_label || "?")}</span>
+        (chunk ${f.chunkIndex + 1})<br/>
+        <em>"${escapeHtml(f.quote || "")}"</em><br/>
+        <span style="color:#666">${escapeHtml(f.reasoning || "")}</span>
+      `;
+    }
+    classifyResults.appendChild(div);
+  }
+}
+
 loadSettings();
