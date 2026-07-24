@@ -141,7 +141,7 @@ Same legal-compliance disclosure pattern seen at Spotify and GitHub — consiste
 
 Unusually specific compared to most data-sharing clauses — it names OpenAI directly, and more importantly, discloses that the data can reach your employer. That's a concrete, real consequence someone could reasonably object to, not just vague "we share with partners" language.
 
-**2. data_sharing —  risky**
+**2. data_sharing — risky**
 > "Coursera will provide limited personal information (name, email address and badge metadata) to its third party digital credentialing platform (Credly) to allow you to set up an account with Credly to receive your OpenAI course completion badge."
 
 Names the third party directly (Credly), which is more transparent than most. Less concerning than the clause above since this sharing is needed to deliver a feature the user opted into, and the data involved is limited — but still an external platform the user didn't choose directly, so keeping this as risky.
@@ -153,13 +153,134 @@ The strongest unilateral_change protection in the whole corpus — two separate 
 
 ---
 
-## Patterns I noticed across sites
+## Site 8: WhatsApp — Privacy Policy
+**URL:** https://www.whatsapp.com/legal/privacy-policy
+**Date checked:** 24 July 2026
 
-**On unilateral_change**, there's a real spread once you compare companies side by side:
-- **Best:** Coursera (homepage + email notice, visible effective date)
-- **Also strong:** Netflix (one month's advance notice)
-- **Decent:** Zoom (no advance notice, but a visible "Last Updated" + change note)
-- **Weak but standard:** Myntra, Spotify (no notice at all — but this turned out to be the industry default, not unusual)
-- **Worst:** Flipkart (fee and protection-program changes apply immediately upon posting, no notice whatsoever)
+**1. data_sharing — boilerplate**
+> "When we share information with third-party service providers and other Meta Companies in this capacity, we require them to use your information on our behalf in accordance with our instructions and terms."
 
-**On data_sharing**, most companies fall back on the same handful of "safe" justifications — legal compliance, third-party links, integrations — and those are genuinely boilerplate. The real risky cases showed up only when a company named a *specific* destination for the data with a *real consequence* attached, like Coursera disclosing that course data can reach a user's employer.
+Matches the same "sharing within corporate family + service providers" pattern seen at GitHub and Zoom — standard for a company this size, and it at least commits to instructions/terms governing how the data can be used.
+
+**2. data_retention — risky**
+> "We store information for as long as necessary for the purposes identified in this Privacy Policy, including to provide our Services or for other legitimate purposes, such as complying with legal obligations, enforcing and preventing violations of our Terms, or protecting or defending our rights, property, and users."
+
+Same "vague, undefined duration" pattern already flagged at Myntra — no concrete number or maximum given, just an open-ended "as necessary." This is now the third site using nearly this exact wording, which points to an industry-wide gap rather than something specific to WhatsApp.
+
+**3. unilateral_change — boilerplate (favorable)**
+> "We may amend or update our Privacy Policy. We will provide you notice of amendments to this Privacy Policy, as appropriate, and update the 'Effective Date' at the top of this Privacy Policy."
+
+Similar tier to Zoom's version — no fixed advance-notice period like Netflix's month, but a stated commitment to notify users plus a visible effective-date change, rather than silently updating with no signal at all.
+
+---
+
+## Site 9: Google Pay — Privacy Policy
+**URL:** https://policies.google.com/privacy
+**Date checked:** 24 July 2026
+
+**1. data_sharing — boilerplate**
+> "We may share your information with third parties who provide services to us, such as website hosting, maintenance, and improvement, infrastructure, IT services, customer service, email delivery, auditing and processing payments."
+
+Unusually specific for a data-sharing clause — rather than a vague "partners," it lists concrete service categories. More transparent than most sharing clauses in the corpus, even though the underlying practice (sharing with vendors) is standard.
+
+**2. data_retention — risky**
+> "We will retain your information for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law."
+
+Nearly word-for-word the same vague-duration pattern seen at Myntra and WhatsApp — keeping this consistent with those two rather than treating it as a special case, since the underlying transparency gap is identical.
+
+**3. unilateral_change — boilerplate**
+> "We may change this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the Google website."
+
+Standard notice-by-posting pattern, similar tier to Myntra/Spotify — no advance warning before the change applies, just a promise to publish the update somewhere.
+
+---
+
+## Site 10: Zomato — Terms of Use
+**URL:** https://www.zomato.com/terms-of-use
+**Date checked:** 24 July 2026
+
+**1. unilateral_change — risky**
+> "Zomato may vary or amend or change or update these Terms, from time to time entirely at its own discretion... You shall be responsible for checking these Terms from time to time... Your use of Zomato Platform after any such amendment... shall be deemed as your express acceptance to such amended/changed terms."
+
+This goes further than most unilateral_change clauses in the corpus — it's not just "we can change terms without notice," it actively places the burden on the user to keep checking, and treats silence or continued use as agreement. A meaningfully harsher pattern than Flipkart's or Myntra's versions.
+
+---
+
+## Site 11: Adobe — Terms of Use
+**URL:** https://www.adobe.com/legal/terms.html
+**Date checked:** 24 July 2026
+
+**1. data_sharing — risky**
+> "Adobe may provide your personal information to such Business. Access to complimentary Entitlements... may be provided to any users added to a Business's Admin Console... and such users would be considered Business Users."
+
+Similar concern to Coursera's employer-visibility clause — if added under a Business/enterprise account, an admin can see your data. A concrete, specific consequence rather than vague sharing language.
+
+**2. broad_license — risky**
+> "you grant us a non-exclusive, worldwide, royalty-free license to... reproduce, distribute, create derivative works, publicly display, publicly perform, and sublicense the foregoing rights to third parties acting on our behalf" [regarding your Cloud Content]
+
+One of the broadest license clauses in the whole corpus — public display/performance rights plus the ability to sublicense to third parties, applied to actual creative work, given Adobe's core user base of designers and photographers.
+
+**3. arbitration — boilerplate (favorable)**
+> "If either party files a Claim in arbitration that could have been brought in small claims court, the other party may provide notice that it wants the case decided in small claims court before the appointment of an arbitrator..."
+
+Actually consumer-protective — preserves a path to small claims court instead of forcing arbitration for smaller disputes. Comparable tier to Netflix's notice period.
+
+---
+
+## Site 12: Blinkit — Privacy Policy
+**URL:** https://blinkit.com/privacy
+**Date checked:** 25 July 2026
+
+**1. data_sharing — risky**
+> "...you expressly consent to the sharing of your information with third-party payment processors, and other third-party service providers (including but not limited to service providers who provide fraud detection services to us and other third parties)."
+
+Payment processing sharing is functionally necessary, but the "including but not limited to... and other third parties" phrasing is genuinely open-ended — there's no real ceiling on who else might receive this data. That vagueness is what pushes this to risky rather than boilerplate.
+
+---
+
+## Site 13: Infosys — Terms of Use
+**URL:** https://www.infosys.com/terms-of-use.html
+**Date checked:** 25 July 2026
+
+**1. unilateral_change — boilerplate**
+> "Your continued use of the Website after any changes to these Terms of Use are posted will be considered acceptance of those changes."
+
+Same "continued use = acceptance" pattern as Zomato — but without the added burden-shifting language ("you must check"), so this version is milder. Labeling boilerplate rather than risky for comparison.
+
+---
+
+## Site 14: TVS Motor — Privacy Policy
+**URL:** [TVS privacy link]
+**Date checked:** 25 July 2026
+
+**1. data_sharing — boilerplate**
+> "We may disclose your Personal Data to: i. Our Parent Company for business and operational purposes; ... To respond to court orders, or legal process, or to establish our legal rights or defend against legal claims."
+
+Two standard categories combined — sharing within a corporate group, and legal-compliance disclosure. Matches the exact same pattern already seen at WhatsApp (corporate family) and Spotify/GitHub/Zoom (legal compliance). Nothing unusual to TVS specifically.
+
+---
+
+## Site 15: Prada — Privacy Policy
+**URL:** [Prada privacy link]
+**Date checked:** 25 July 2026
+
+**1. data_sharing — boilerplate**
+> "Whenever necessary and/or instrumental to the above purposes, your Personal Data may be processed on behalf of PRADA by other entities engaged by PRADA... including: Related Companies... Service Providers: third party service providers, consultants and firms providing advisory and/or consulting activities... including website analytic services, hosting, transaction and payment processing, promotional campaign management, fraud prevention, shipping of goods, IT maintenance, etc."
+
+Long list, but genuinely more specific and itemized than most data-sharing clauses in the corpus — actually naming categories (analytics, hosting, payments, shipping) rather than a vague "partners."
+
+**2. data_sharing — boilerplate (favorable)**
+> "Your Personal Data will not be used for third-party advertising purposes or for the promotion of products, services or initiatives by entities other than the Prada Group, nor shall they be disclosed to unknown persons under any circumstances."
+
+The first explicitly protective data-sharing commitment in the whole corpus — most policies only describe what they can do; this one explicitly rules out third-party advertising use.
+
+**3. data_retention — boilerplate (favorable)**
+> "Personal Data of your membership account are kept for a period of 7 years from the date of your last interaction with the Prada Group or otherwise until you withdraw... Purchase details are kept for a period of 7 years from the date of purchase."
+
+The single most important find in the whole corpus for this category — every other data_retention clause found (Myntra, WhatsApp, Google Pay) used vague "as long as necessary" language with no real number. Prada is the only site that commits to a concrete duration, which shows a specific number is achievable in practice — making the vague versions elsewhere look like an avoidable gap rather than an unavoidable industry constraint.
+
+**4. unilateral_change — boilerplate**
+> "PRADA reserves the right to amend this Privacy Policy at any time. The Privacy Policy currently in force is the one published on our website."
+
+Standard, minimal-commitment version — no notice mechanism described at all, similar tier to Myntra/Spotify.
+
