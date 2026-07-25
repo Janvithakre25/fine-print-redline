@@ -55,13 +55,39 @@ function buildClassifyPrompt(chunk) {
     "You are analyzing a fragment of a website's Terms of Service or Privacy Policy.",
     "",
     "Find clauses in this fragment that fall into ANY of these 6 categories:",
-    "1. data_sharing - data sold or shared with third parties/partners",
+    "1. data_sharing - data sold or shared with third parties/partners. This",
+    "   includes indirect disclaimers too, e.g. 'links on this site may let",
+    "   third parties collect data about you' counts as data_sharing, not",
+    "   just direct statements like 'we share your data with X'.",
     "2. arbitration - forced arbitration or class-action waiver",
     "3. auto_renewal - charges continue unless user actively cancels",
     "4. broad_license - company can reuse/sublicense/train on user content",
     "5. unilateral_change - company can change terms anytime, often without notice",
     "6. data_retention - vague or indefinite data retention period",
     "",
+    "IMPORTANT: Only flag genuine clauses that create an obligation, right,",
+    "or restriction related to one of these categories. Do NOT flag:",
+    "- general descriptions or definitions (e.g. defining what 'content' means)",
+    "- section headings on their own",
+    "- disclaimers about risk-of-use that don't involve data or terms changes",
+    "- unrelated legal boilerplate like severability clauses",
+    "- sentences that only mention a FEATURE or PURPOSE (e.g. 'personalization',",
+    "  'infrastructure', 'connecting your account') without stating what data",
+    "  is collected, shared, or how long it's kept — mentioning a topic is",
+    "  NOT the same as stating a policy",
+    "",
+    "Before flagging anything, apply this test: could you rewrite the quote as",
+    "a plain-English rule someone must follow or is protected by (e.g. 'they",
+    "will share your purchase history with credit bureaus')? If the sentence",
+    "is just naming a feature or topic with no rule attached, skip it — do",
+    "NOT flag it just because a related word like 'data' or 'share' appears",
+    "nearby in the same fragment.",
+    "If a sentence merely mentions a related word (like 'share' or 'change')",
+    "without actually stating a real policy, do not flag it. It is completely",
+    "normal and expected for many chunks to return an empty array — most",
+    "policy text is not a flaggable clause.",
+    "",
+    "For EACH clause you find, return an object with these exact fields:",
     "For EACH clause you find, return an object with these exact fields:",
     "- category: one of the 6 category names above (exactly as written)",
     "- risk_label: either \"risky\" or \"boilerplate\" (your best guess — boilerplate",
@@ -123,8 +149,16 @@ async function classifyAllChunks(chunks, { provider, apiKey }, onProgress) {
       });
       continue;
     }
+const POLICY_VERB_PATTERN = /\b(share|shared|sharing|disclose|retain|kept|store|arbitrat|renew|cancel|licens|modify|amend|change|terminat|collect)\w*\b/i;
 
     for (const finding of parsed) {
+      const quote = finding.quote || "";
+      // Skip findings whose quote doesn't contain an actual policy-action
+      // word — filters out vague feature mentions like "personalization"
+      // that the model sometimes flags despite prompt instructions.
+      if (!POLICY_VERB_PATTERN.test(quote)) {
+        continue;
+      }
       allFindings.push({ ...finding, chunkIndex: i });
     }
   }
