@@ -46,7 +46,7 @@ A legal-compliance clause — this reflects an obligation under law rather than 
 
 More specific than most data-sharing clauses I read — Spotify actually names the third party and the exact purpose, which is more transparent than the vague "we share with partners" language most sites use.
 
-**3. unilateral_change — risky**
+**3. unilateral_change — boilerplate**
 > "We may occasionally make changes to this Policy."
 
 No notice period is mentioned at all — compared to Netflix's one-month commitment, this gives users zero warning before a change takes effect.
